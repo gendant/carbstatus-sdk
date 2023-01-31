@@ -47,7 +47,7 @@
 
 <div class="c">
   <div class="c1">
-    <img alt="carbstatus logo" class="l" src="/src/assets/icon.jpeg" />
+    <img alt="carbstatus logo" class="l" src="/src/assets/icon.svg" />
     <Gauge {index} />
   </div>
   <div class="c2">
