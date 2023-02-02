@@ -1,7 +1,7 @@
 <script lang="ts">
     export let index: number
 
-    const minValue = 20
+    const minValue = 50
     const max = minValue + 100;
 
     $: value = minValue + index;
@@ -24,10 +24,10 @@
         position: absolute;
         display: inline-block;
         color: #fff;
-        font-size: 8em;
-        top: 0.3em;
-        left: 0.1em;
-        width: 80%;
+        font-size: 6vw;
+        font-weight: bolder;
+        top: 0em;
+        left: 0em;
         font-family: monospace;
 
     }
@@ -35,7 +35,8 @@
     .progress-bar {
         display: block;
         position: relative;
-        width: 100%;
+        width: 70%;
+        height: auto;
 
     }
     .progress-linear {
@@ -43,14 +44,14 @@
         -moz-appearance: none;
         appearance: none;
         border: none;
-        height: 10em;
-        width: 100%;
+        height: 100%;
         color: rgb(var(--primary-rgb, 33, 150, 243));
         background-color: rgba(
             var(--primary-rgb, 30, 150, 243),
             0.12
         );
-        font-size: 16px;
+        font-size: 1em;
+        width: 100%;
     }
 
     .progress-linear::-webkit-progress-bar {
@@ -113,4 +114,14 @@
             background-position: left -102% top 0%;
         }
     }
+
+
+
+    @media screen and (min-width: 822px) {
+    .progress-bar span{
+      font-size: 4em;
+
+    }
+    }
+  
 </style>

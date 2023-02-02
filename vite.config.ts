@@ -16,7 +16,7 @@ export default defineConfig({
     },
     rollupOptions:{
       output:{
-        entryFileNames: "dist.js"
+        entryFileNames: "carbstatus.min.js"
       }
     },
     
