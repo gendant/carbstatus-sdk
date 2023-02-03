@@ -24,10 +24,11 @@
         position: absolute;
         display: inline-block;
         color: #fff;
-        font-size: 6vw;
+        font-size: 1.5em; 
+        font-size: calc(1.5em + 1vw);
         font-weight: bolder;
-        top: 0em;
-        left: 0em;
+        top: 0.3em;
+        left: 0;
         font-family: monospace;
 
     }
@@ -46,10 +47,7 @@
         border: none;
         height: 100%;
         color: rgb(var(--primary-rgb, 33, 150, 243));
-        background-color: rgba(
-            var(--primary-rgb, 30, 150, 243),
-            0.12
-        );
+        background-color: rgba(var(--primary-rgb, 30, 150, 243),0.5);
         font-size: 1em;
         width: 100%;
     }
@@ -78,17 +76,7 @@
     /* Indeterminate */
     .progress-linear:indeterminate {
         background-size: 200% 100%;
-        background-image: linear-gradient(
-            to right,
-            transparent 50%,
-            currentColor 50%,
-            currentColor 60%,
-            transparent 60%,
-            transparent 71.5%,
-            currentColor 71.5%,
-            currentColor 84%,
-            transparent 84%
-        );
+        background-image: linear-gradient(to right,transparent 50%,currentColor 50%,currentColor 60%,transparent 60%,transparent 71.5%,currentColor 71.5%,currentColor 84%,transparent 84%);
         animation: progress-linear 2s infinite linear;
     }
 
@@ -117,11 +105,18 @@
 
 
 
-    @media screen and (min-width: 822px) {
+    /* @media screen and (min-width: 822px) {
     .progress-bar span{
       font-size: 4em;
 
     }
-    }
+    } */
+
+    @media (prefers-color-scheme: dark) {
+
+        .progress-linear{
+        background-color: rgba(var(--primary-rgb, 30, 150, 243),0.5);
+        }
+}
   
 </style>

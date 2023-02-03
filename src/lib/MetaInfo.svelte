@@ -20,6 +20,7 @@
         font-weight: bolder;
         margin: 0 auto;
         padding-top: 10px;
+        color: black;
         
         
 
@@ -36,6 +37,15 @@
 
     }
     }
+
+    @media (prefers-color-scheme: dark) {
+    .t{
+        color: #fff;
+    }
+    .i{
+        fill: white;
+    }
+}
 
 
 </style>

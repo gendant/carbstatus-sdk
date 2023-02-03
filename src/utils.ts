@@ -18,7 +18,6 @@ export function onInterval(callback:any) {
 
 export async function getData(domain): Promise<IIndexData>{
 
-    info('Refreshing data...')
     if(config.isProd){
         const loc = window.location.hostname
 
@@ -26,7 +25,7 @@ export async function getData(domain): Promise<IIndexData>{
             throw new Error(`Domain mismatch: ${loc}`)
         }
 
-        const res = await fetch(`${CS_ENDPOINT}?l=${domain}`)
+        const res = await fetch(`${CS_ENDPOINT}?l=https://${domain}`)
 
         if (!(res && res.ok)){
             if(res.status === 400){

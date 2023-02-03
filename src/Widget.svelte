@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import { config } from "./config";
   import Gauge from "./lib/Gauge.svelte";
+    import Logo from "./lib/Logo.svelte";
   import MetaInfo from "./lib/MetaInfo.svelte";
   import {
     getData,
@@ -20,10 +21,7 @@
    */
   let data: IIndexData;
   $: index = data?.nvalue;
-  $: time = data?.time;
-  $: emission = data?.value
   $: linkInfo = `${config.carbstatusUrl}/?url=${domain}`
-
 
   //initial data fetching
   onMount(async()=>{
@@ -53,13 +51,14 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="c" on:click={navigate}>
-    <img alt="carbstatus logo" class="l" src="/src/assets/icon.svg" />
+    <Logo/>
     <Gauge {index} />
     <MetaInfo/>
 
 </div>
 
 <style>
+
 
   .c {
     cursor: pointer;
@@ -80,19 +79,10 @@
 
   }
 
-
-  
-
-
-  /* .c2{
-    margin-top: 2%;
-    width: 100%;
-  } */
-
-  .l {
-    height: auto;
-    width: 30%;
-  }
-
+  @media (prefers-color-scheme: dark) {
+    .c{
+      background-color: rgb(17, 12, 12);
+    }
+}
 
 </style>
