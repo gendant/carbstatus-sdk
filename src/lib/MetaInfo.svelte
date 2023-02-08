@@ -1,42 +1,33 @@
 <script lang="ts">
-
+    
 </script>
 
-    
-    <!-- <p class="ex">Carbon emissions: <span class="em">{formatEmission}</span> <span class="un">gCO2/MWh</span></p>
-    <p class="ux">Next update in <span class="em">{formatTime}</span><span class="un">min</span></p> -->
+<p class="t">
+View CarbStatus page <svg class="i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M224 304a16 16 0 0 1-11.31-27.31l157.94-157.94A55.7 55.7 0 0 0 344 112H104a56.06 56.06 0 0 0-56 56v240a56.06 56.06 0 0 0 56 56h240a56.06 56.06 0 0 0 56-56V168a55.7 55.7 0 0 0-6.75-26.63L235.31 299.31A15.92 15.92 0 0 1 224 304Z"></path><path d="M448 48H336a16 16 0 0 0 0 32h73.37l-38.74 38.75a56.35 56.35 0 0 1 22.62 22.62L432 102.63V176a16 16 0 0 0 32 0V64a16 16 0 0 0-16-16Z"></path></svg>
+</p>
 
-    <p class="t">View CarbStatus page <svg class="i" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M224 304a16 16 0 0 1-11.31-27.31l157.94-157.94A55.7 55.7 0 0 0 344 112H104a56.06 56.06 0 0 0-56 56v240a56.06 56.06 0 0 0 56 56h240a56.06 56.06 0 0 0 56-56V168a55.7 55.7 0 0 0-6.75-26.63L235.31 299.31A15.92 15.92 0 0 1 224 304Z"></path><path d="M448 48H336a16 16 0 0 0 0 32h73.37l-38.74 38.75a56.35 56.35 0 0 1 22.62 22.62L432 102.63V176a16 16 0 0 0 32 0V64a16 16 0 0 0-16-16Z"></path></svg>
-    </p>
 
 <style>
-
-
     .t{
-        display: block;
+        display: flex;
         text-transform: uppercase;
-        font-size: 0.7em;
+        font-size: 10px; /* fallback */
+        font-size: clamp(6px, 2vw, 13px);
         font-family: monospace;
         font-weight: bolder;
         margin: 0 auto;
-        padding-top: 10px;
+        padding-top: 2px;
         color: black;
-        
-        
-
+        width: 100%;
+        justify-content: right;
+        align-items: center;        
     }
-
     .i{
         height: auto;
-        width: 15px;
+        display: inline-block;
+        width: 12px;
     }
 
-    @media screen and (min-width: 1024px) {
-    .t{
-      font-size: 1em;
-
-    }
-    }
 
     @media (prefers-color-scheme: dark) {
     .t{

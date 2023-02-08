@@ -1,15 +1,20 @@
 <script lang="ts">
+    import { config } from "../config";
+
+
     export let index: number
 
     const minValue = 50
     const max = minValue + 100;
-
     $: value = minValue + index;
+    $: fillColor= index < 50 ? config.colors[1]: index >=  50 && index < 75 ? config.colors[2]: config.colors[3]
+
+    
 </script>
 
 {#if index != undefined}
-    <div class="progress-bar">
-        <span data-value="{index}" style="width: {index}%;">{index}</span>
+    <div class="progress-bar" style="--primary-rgb: {fillColor}">
+        <div class="progress-text" data-value="{index}">{index}</div>
         <progress class="progress-linear" {value} {max} />
     </div>
 {:else}
@@ -20,24 +25,23 @@
 {/if}
 
 <style>
-    .progress-bar span {
+    .progress-text {
         position: absolute;
-        display: inline-block;
         color: #fff;
-        font-size: 1.5em; 
-        font-size: calc(1.5em + 1vw);
+        font-size: 40px; /* fallback */
+        font-size: clamp(10px, 6vw, 40px);
         font-weight: bolder;
-        top: 0.3em;
-        left: 0;
-        font-family: monospace;
+        font-family: monospace !important;
 
     }
 
     .progress-bar {
         display: block;
-        position: relative;
         width: 70%;
         height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: left;
 
     }
     .progress-linear {
@@ -46,8 +50,8 @@
         appearance: none;
         border: none;
         height: 100%;
-        color: rgb(var(--primary-rgb, 33, 150, 243));
-        background-color: rgba(var(--primary-rgb, 30, 150, 243),0.5);
+        color: rgb(var(--primary-rgb, 86,149,251));
+        background-color: rgba(var(--primary-rgb, 86,149,251),0.5);
         font-size: 1em;
         width: 100%;
     }

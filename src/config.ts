@@ -8,5 +8,11 @@ export const config = {
 */
     carbstatusUrl: import.meta.env.VITE_CARBSTATUS_URL ?? "https://carbstatus.info",
     refreshRate: 30 * 1000,
-    isProd: import.meta.env.PROD
+    isProd: import.meta.env.PROD,
+    colors:{
+        '1': '234,2,2',
+        '2': '252,158,0',
+        '3': '86,149,251'
+    }
 }
+

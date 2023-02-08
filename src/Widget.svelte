@@ -51,7 +51,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="c" on:click={navigate}>
-    <Logo/>
+    <Logo {index}/>
     <Gauge {index} />
     <MetaInfo/>
 
@@ -75,7 +75,7 @@
     z-index: 1;
     background-color: #fff;
     padding: 10px;
-    
+    border-radius: 20px;
 
   }
 
