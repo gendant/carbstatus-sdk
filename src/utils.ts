@@ -1,9 +1,7 @@
 import { onDestroy } from "svelte";
 import { config } from "./config";
 
-  /**
-   * Interval period for fetching new carbstatus data. Default 5min
-   */
+
   export const REFRESH_RATE_MS: number =config.refreshRate
   export const CS_ENDPOINT: string = `${config.carbstatusApiUrl}/index`
 
@@ -41,6 +39,7 @@ export async function getData(domain): Promise<IIndexData>{
 
     return new Promise((resolve)=>setTimeout(()=>resolve(mockData()), 3000))
 }
+
 
 
 export function info(msg:string){

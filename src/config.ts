@@ -7,7 +7,10 @@ export const config = {
 * Carbstatus web Endpoint
 */
     carbstatusUrl: import.meta.env.VITE_CARBSTATUS_URL ?? "https://carbstatus.info",
-    refreshRate: 30 * 1000,
+/**
+ * Interval period for fetching new carbstatus data. Default 30s
+ */
+    refreshRate: 30 * 1000, 
     isProd: import.meta.env.PROD,
     colors:{
         '1': '234,2,2',

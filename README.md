@@ -1,47 +1,146 @@
-# Svelte + TS + Vite
+# Carbstatus
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+![carbstatus logo](https://raw.githubusercontent.com/gendant/carbstatus-sdk/master/src/assets/cs-beta.png "Carbstatus")
 
-## Recommended IDE Setup
+> Leverage carbon awareness to reduce carbon emissions
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+[![carbstatus-info](https://img.shields.io/badge/carbstatus.info-view-brightgreen)](https://carbstatus.info)
+[![npm](https://badgen.now.sh/npm/v/@gendant/carbstatus-sdk)](https://www.npmjs.com/package/@gendant/carbstatus-sdk)
 
-## Need an official Svelte framework?
+- [About](#about)
+- [How?](#how?)
+- [Carbstatus SDK](#carbstatus-sdk)
+- [Carbstatus API](#carbstatus-api)
+- [Carbstatus Private Beta Program](#carbstatus-private-beta-program)
+- [License](#license)
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+# About
 
-## Technical considerations
+According to [The Green Software Foundation](https://greensoftware.foundation), carbon-aware computing involves shifting compute to times and places where the carbon intensity of the grid results in lower carbon emissions. 
 
-**Why use this over SvelteKit?**
+Businesses can now leverage carbon-aware computing as an innovative and viable option to reduce the carbon emissions created by their software.
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+# How?
 
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+Currently, we rely on [WattTime](https://www.watttime.org) as our data provider. 
+Carbon data is updated every 5 minutes for each of the supported WattTime locations. This allow us to get both instant carbon emissions and the 24h time window data forecast.
+We expose this data in our API and build our services around it to extend carbon awareness development everywhere.
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
 
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
+# Carbstatus SDK
 
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
+> **Important** While stable and working nicely for most of the apps, the carbstatus-sdk is still in BETA stage and we thank you that you report to us any bug you may find
 
-**Why include `.vscode/extensions.json`?**
+The sdk is meant to sustain carbon awareness web development.
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
+As of now, the main features are:
 
-**Why enable `allowJs` in the TS template?**
+- embed the carbstatus js widget
+- import carbstatus data into your app
 
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
+...but more features will come soon!
 
-**Why is HMR not preserving my local component state?**
+## Embed the carbstatus widget 
 
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
+You can embed the carbstatus widget in any website (SPAs, web apps, CMS), by adding the following code snippet in the `head` of your `index.html` file and replacing the `data-domain` attribute with your domain.
 
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
+```html
+<script defer data-domain="carbstatus.info" src="https://unpkg.com/@gendant/carbstatus-sdk/carbstatus.min.js"></script>
+
+```
+
+## Using carbstatus data in your app
+
+ If you only want carbstatus data but not the widget, set the `data-widget="false"` attribute in the above script tag.
 
 ```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+
+interface IIndexData{
+    time: number,
+    nvalue: number
+    value: number
+}
+
+const carbstatusIndexData:IIndexData = globalThis.carbstatus
+
+
 ```
+
+
+# Carbstatus API
+
+Main endpoint: [https://api.carbstatus.info/v1](https://api.carbstatus.info/v1)
+
+## Methods
+
+- **/index**
+
+  Returns the normalized carbstatus index for a given domain or ip address. 
+
+  Query params:
+  - `l` <[required]>: a domain name
+  - `i` <[optional]>: an ipv4 address
+
+  If Status Code 200 -> Returns a JSON object:
+
+```js
+  {
+    time: number // timestamp when the data will next update
+    nvalue: number // 0-100 normalized carbstatus index
+    value: number // MOER value in gCO2 / MWh
+  }
+```
+
+
+- **/index-ext**
+
+
+  Returns the 24h forecast normalized carbstatus index for a given domain or ip address.
+
+  Query params:
+  - `l` <[required]>: a domain name
+  - `i` <[optional]>: an ipv4 address
+
+
+  If Status Code 200 -> Returns a JSON object:
+
+```js
+  {
+    time: number // timestamp when the data will next update
+    forecast: number[] // 24h forecast normalized carbstatus indexes with a 5min step
+    oindex: number // index in the forecast array when is the optimal time 
+    ovalue: number // optimal (best) MOER value in gCO2 / MWh
+    uvalue: number // suboptimal (worse) MOER value in gCO2 / MWh
+  }
+```
+
+# Carbstatus Private Beta Program
+
+Carbstatus can be used for many cool use cases such as:
+
+- [edge computing carbon awareness](https://github.com/metatarz/carbstatus-cloudflare-worker-example)
+- shifting demand to lower carbstatus indexes
+- creating innovative carbon aware applications
+
+Take this opportunity to join our private beta program and get early access to the full list of features! 
+Send your personal use case and how you intend to use Carbstatus to the email `carbstatus[at]gendant.com` and we'll reach to you soon.
+
+# License
+
+MIT 
+Copyright (c) 2023 Gendant Digital S.L
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+

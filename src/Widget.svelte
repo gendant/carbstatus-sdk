@@ -15,6 +15,10 @@
    * Domain name from data-domain attribute in script tag.
    */
   export let domain: string;
+  /**
+   * Boolean that controls whether to display the widget from data-widget attribute in script tag.
+   */
+  export let hideWidget: boolean = false
 
   /**
    * Carbstatus data, refreshed periodically
@@ -22,12 +26,13 @@
   let data: IIndexData;
   $: index = data?.nvalue;
   $: linkInfo = `${config.carbstatusUrl}/?url=${domain}`
+  $: setGlobalCarbstatusData(data)
+
 
   //initial data fetching
   onMount(async()=>{
     try {
       data = await getData(domain);
-
     }catch(e){
       panic(e)
     }
@@ -44,11 +49,15 @@
     }
   });
 
+  // make data available externally
+  const setGlobalCarbstatusData = (data:IIndexData)=> globalThis.carbstatus = data
+
   function navigate(){
     window.open(linkInfo, "_blank")
   }
 </script>
 
+{#if !hideWidget }
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="c" on:click={navigate}>
     <Logo {index}/>
@@ -56,6 +65,8 @@
     <MetaInfo/>
 
 </div>
+
+{/if}
 
 <style>
 
@@ -74,9 +85,7 @@
     max-width: 200px;
     z-index: 1;
     background-color: #fff;
-    padding: 10px;
-    border-radius: 20px;
-
+    padding: 5px;
   }
 
   @media (prefers-color-scheme: dark) {
