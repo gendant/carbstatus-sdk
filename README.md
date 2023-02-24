@@ -75,11 +75,27 @@ Main endpoint: [https://api.carbstatus.info/v1](https://api.carbstatus.info/v1)
 
 - **/index**
 
-  Returns the normalized carbstatus index for a given domain or ip address. 
+  Returns the normalized carbstatus index for a given domain. 
 
   Query params:
   - `l` <[required]>: a domain name
-  - `i` <[optional]>: an ipv4 address
+
+  If Status Code 200 -> Returns a JSON object:
+
+```js
+  {
+    time: number // timestamp when the data will next update
+    nvalue: number // 0-100 normalized carbstatus index
+    value: number // MOER value in gCO2 / MWh
+  }
+```
+
+- **/index-by-ip**
+
+  Returns the normalized carbstatus index for a given ip. 
+
+  Query params:
+  - `i` <[required]>: an ip address
 
   If Status Code 200 -> Returns a JSON object:
 
@@ -95,11 +111,10 @@ Main endpoint: [https://api.carbstatus.info/v1](https://api.carbstatus.info/v1)
 - **/index-ext**
 
 
-  Returns the 24h forecast normalized carbstatus index for a given domain or ip address.
+  Returns the 24h forecast normalized carbstatus index for a given domain.
 
   Query params:
   - `l` <[required]>: a domain name
-  - `i` <[optional]>: an ipv4 address
 
 
   If Status Code 200 -> Returns a JSON object:
@@ -111,6 +126,7 @@ Main endpoint: [https://api.carbstatus.info/v1](https://api.carbstatus.info/v1)
     oindex: number // index in the forecast array when is the optimal time 
     ovalue: number // optimal (best) MOER value in gCO2 / MWh
     uvalue: number // suboptimal (worse) MOER value in gCO2 / MWh
+    lurl: string // domain logo url
   }
 ```
 

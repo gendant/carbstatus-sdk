@@ -28,3 +28,4 @@ public
 dist
 
 .env**
+carbstatus-sdk
