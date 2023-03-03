@@ -8,10 +8,10 @@
 [![npm](https://badgen.now.sh/npm/v/@gendant/carbstatus-sdk)](https://www.npmjs.com/package/@gendant/carbstatus-sdk)
 
 - [About](#about)
-- [How?](#how?)
+- [How?](#how)
 - [Carbstatus SDK](#carbstatus-sdk)
 - [Carbstatus API](#carbstatus-api)
-- [Carbstatus Private Beta Program](#carbstatus-private-beta-program)
+- [Carbstatus Beta Program](#carbstatus-beta-program)
 - [License](#license)
 
 # About
@@ -126,20 +126,27 @@ Main endpoint: [https://api.carbstatus.info/v1](https://api.carbstatus.info/v1)
     oindex: number // index in the forecast array when is the optimal time 
     ovalue: number // optimal (best) MOER value in gCO2 / MWh
     uvalue: number // suboptimal (worse) MOER value in gCO2 / MWh
-    lurl: string // domain logo url
   }
 ```
 
-# Carbstatus Private Beta Program
+# Carbstatus Beta Program
 
-Carbstatus can be used for many cool use cases such as:
+The Carbstatus beta program will let you develop applications for:
 
-- [edge computing carbon awareness](https://github.com/metatarz/carbstatus-cloudflare-worker-example)
-- shifting demand to lower carbstatus indexes
-- creating innovative carbon aware applications
+- [carbon aware edge computing](https://github.com/metatarz/carbstatus-cloudflare-worker-example)
+- innovative carbon aware applications
+- shifting demand and posponing automated processes to lower carbstatus indexes
 
-Take this opportunity to join our private beta program and get early access to the full list of features! 
-Send your personal use case and how you intend to use Carbstatus to the email `carbstatus[at]gendant.com` and we'll reach to you soon.
+Also, selected participants will be granted access to our:
+- API
+- SDK
+- custom carbstatus page with personalised logo and domain (eg: https://carbstatus.info/?url=example.org)
+- team support
+
+
+Take this opportunity to join our beta program and get early access to the full list of features.
+
+Send us an email to `carbstatus[at]gendant.com` with few words on how you intend to use carbstatus and we'll reach to you soon.
 
 # License
 
