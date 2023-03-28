@@ -44,6 +44,7 @@ As of now, the main features are:
 
 You can embed the carbstatus widget in any website (SPAs, web apps, CMS), by adding the following code snippet in the `head` of your `index.html` file and replacing the `data-domain` attribute with your domain.
 
+
 ```html
 <script defer data-domain="carbstatus.info" src="https://unpkg.com/@gendant/carbstatus-sdk/carbstatus.min.js"></script>
 
@@ -65,6 +66,11 @@ const carbstatusIndexData:IIndexData = globalThis.carbstatus
 
 
 ```
+
+## Customizing the widget with your brand color
+
+If you want to customize the widget with your own brand color, set the `data-color-rgb="0,0,0"` attribute in the script tag, and replace *"0,0,0"* with your RGB color code.
+
 
 
 # Carbstatus API
@@ -115,6 +121,28 @@ Main endpoint: [https://api.carbstatus.info/v1](https://api.carbstatus.info/v1)
 
   Query params:
   - `l` <[required]>: a domain name
+
+
+  If Status Code 200 -> Returns a JSON object:
+
+```js
+  {
+    time: number // timestamp when the data will next update
+    forecast: number[] // 24h forecast normalized carbstatus indexes with a 5min step
+    oindex: number // index in the forecast array when is the optimal time 
+    ovalue: number // optimal (best) MOER value in gCO2 / MWh
+    uvalue: number // suboptimal (worse) MOER value in gCO2 / MWh
+  }
+```
+
+
+- **/index-ext-by-ip**
+
+
+  Returns the 24h forecast normalized carbstatus index for a given ip.
+
+  Query params:
+  - `i` <[required]>: an ip address
 
 
   If Status Code 200 -> Returns a JSON object:

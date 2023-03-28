@@ -3,8 +3,9 @@
 
 
     export let index: number
+    export let domainColorRGB: string
 
-    $: fillColor= `fill:rgb(${index < 50 ? config.colors[1]: index >=  50 && index < 75 ? config.colors[2]: config.colors[3]});"`
+    $: fillColor= `fill:rgb(${domainColorRGB ? domainColorRGB : index < 50 ? config.colors[1]: index >=  50 && index < 75 ? config.colors[2]: config.colors[3]});"`
     
     
 </script>

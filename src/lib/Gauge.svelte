@@ -3,11 +3,12 @@
 
 
     export let index: number
+    export let domainColorRGB: string
 
     const minValue = 50
     const max = minValue + 100;
     $: value = minValue + index;
-    $: fillColor= index < 50 ? config.colors[1]: index >=  50 && index < 75 ? config.colors[2]: config.colors[3]
+    $: fillColor= domainColorRGB ? domainColorRGB : index < 50 ? config.colors[1]: index >=  50 && index < 75 ? config.colors[2]: config.colors[3]
 
     
 </script>
@@ -19,7 +20,7 @@
     </div>
 {:else}
     <!-- indeterminate -->
-    <div class="progress-bar">
+    <div class="progress-bar" style="--primary-rgb: {fillColor}">
         <progress class="progress-linear" />
     </div>
 {/if}

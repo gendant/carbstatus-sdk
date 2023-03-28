@@ -16,6 +16,12 @@ export const config = {
         '1': '234,2,2',
         '2': '252,158,0',
         '3': '86,149,251'
-    }
+    },
+
+/**
+ * Carbstatus schedule Endpoint
+ *  
+ */
+    carbstatusScheduleUrl: import.meta.env.VITE_CARBSTATUS_SCHEDULE_URL ?? "https://schedule.carbstatus.workers.dev"
 }
 
